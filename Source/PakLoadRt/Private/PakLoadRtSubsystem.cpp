@@ -128,6 +128,21 @@ EPakResult UPakLoadRtSubsystem::MountPakAsset(const FString& InPakPath, bool bIs
 		TArray<FString> FoundFilenames;
 		TmpPak->FindPrunedFilesAtPath( *TmpPak->GetMountPoint(),FoundFilenames, true, false, true);
 
+		// 解析出所有的关卡资产
+		TArray<FString> ParsedLevels;
+		for (const auto& FileName : FoundFilenames)
+		{
+			if (FileName.EndsWith(TEXT(".umap")))
+			{
+				FString NewFileName = ConvertPakFile(FileName, bIsPluginPak);
+				NewFileName.RemoveFromEnd(TEXT(".umap"));
+				//RegisterLevel(NewFileName);
+				ParsedLevels.Add(NewFileName);
+			}
+		}
+		MountMessages.Add(FMountMes(InPakPath, NewMountPath, ParsedLevels));
+		
+		//UAsset挂载
 		TArray<FString> ParsedAssets;
 		for (const auto& Asset : FoundFilenames)
 		{
@@ -162,6 +177,17 @@ bool UPakLoadRtSubsystem::UnMountPakAsset(const FString& PakPath)
 UObject* UPakLoadRtSubsystem::LoadAssetAsObject(const FString& AssetName)
 {
 	return LoadUObjectFromPak<UObject>(AssetName);
+}
+
+bool UPakLoadRtSubsystem::LoadAssetAsLevelPath(const FString& AssetName, FString& OutLevel)
+{
+	FString LongPackageName;
+	const bool bFound = FPackageName::SearchForPackageOnDisk(AssetName, &LongPackageName);
+	if (bFound)
+	{
+		OutLevel = LongPackageName;
+	}
+	return bFound;
 }
 
 UStaticMesh* UPakLoadRtSubsystem::LoadAssetAsStaticMesh(const FString& AssetName)
