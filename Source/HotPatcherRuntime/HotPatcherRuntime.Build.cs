@@ -8,6 +8,7 @@ public class HotPatcherRuntime : ModuleRules
 {
 	public HotPatcherRuntime(ReadOnlyTargetRules Target) : base(Target)
 	{
+		bUsePrecompiled = true;
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 		
 		PublicIncludePaths.AddRange(

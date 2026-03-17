@@ -4,6 +4,7 @@ public class PakLoadRt : ModuleRules
 {
     public PakLoadRt(ReadOnlyTargetRules Target) : base(Target)
     {
+        bUsePrecompiled = true;
         PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 
         PublicDependencyModuleNames.AddRange(

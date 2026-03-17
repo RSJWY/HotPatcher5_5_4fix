@@ -9,6 +9,7 @@ public class CmdHandler : ModuleRules
 {
 	public CmdHandler(ReadOnlyTargetRules Target) : base(Target)
 	{
+		bUsePrecompiled = true;
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 		bLegacyPublicIncludePaths = false;
 		OptimizeCode = CodeOptimization.InShippingBuildsOnly;

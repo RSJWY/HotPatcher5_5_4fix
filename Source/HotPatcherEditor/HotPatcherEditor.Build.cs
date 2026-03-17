@@ -9,6 +9,7 @@ public class HotPatcherEditor : ModuleRules
 {
 	public HotPatcherEditor(ReadOnlyTargetRules Target) : base(Target)
 	{
+		bUsePrecompiled = true;
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 		bLegacyPublicIncludePaths = false;
 		OptimizeCode = CodeOptimization.InShippingBuildsOnly;
