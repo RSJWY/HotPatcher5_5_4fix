@@ -74,6 +74,9 @@ public:
 	//从Pak文件中加载资产
 	UFUNCTION(BlueprintPure, Category="RtPakLoad")
 	UObject* LoadAssetAsObject(const FString &AssetName);
+	//从Pak文件中加载资产为关卡路径
+	UFUNCTION(BlueprintPure, Category="RtPakLoad")
+	bool LoadAssetAsLevelPath(const FString& AssetName, FString& OutLevel);
 	//从Pak文件中加载静态网格资产
 	UFUNCTION(BlueprintPure, Category="RtPakLoad")
 	UStaticMesh* LoadAssetAsStaticMesh(const FString &AssetName);

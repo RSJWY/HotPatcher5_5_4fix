@@ -8,6 +8,7 @@ public class BinariesPatchFeature : ModuleRules
 {
 	public BinariesPatchFeature(ReadOnlyTargetRules Target) : base(Target)
 	{
+		bUsePrecompiled = true;
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 		
 		PublicIncludePaths.AddRange(
